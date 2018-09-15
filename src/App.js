@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Input, Icon } from 'antd';
+import ReactGA from 'react-ga';
 import logo from './logo.svg';
 import ViettelLogo from './img/viettel.jpg';
 import VinaLogo from './img/vinaphone.png';
@@ -7,6 +8,13 @@ import MobiLogo from './img/mobi.png';
 import GMobileLogo from './img/gmobile.jpg';
 import VietnamobileLogo from './img/vietnamobile.png';
 import './App.css';
+
+ReactGA.initialize('UA-113943686-2', {
+    debug: true,
+    titleCase: false,
+  });
+
+ReactGA.pageview(window.location.pathname + window.location.search);
 
 class App extends Component {
     constructor(props) {
@@ -188,7 +196,7 @@ class App extends Component {
                                 value={phoneValue}
                                 placeholder="Your phone here"
                             />
-                            <img srcSet={carrierImg} style={{ position: 'absolute', right: 50, top: -50 }} width={100} height={100} />
+                            <img srcSet={carrierImg} style={{ position: 'absolute', right: 50, top: -50 }} width={200} height={100} />
                         </div>
                     </div>
                     <div style={{ marginTop: 20 }}>

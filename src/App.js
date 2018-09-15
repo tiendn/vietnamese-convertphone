@@ -12,7 +12,7 @@ import './App.css';
 ReactGA.initialize('UA-113943686-2', {
     debug: true,
     titleCase: false,
-  });
+});
 
 ReactGA.pageview(window.location.pathname + window.location.search);
 
@@ -27,7 +27,8 @@ class App extends Component {
     }
 
     onChange = (e) => {
-        let phone = e.target.value;
+        let phone = e.target.value.trim();
+        phone = phone.replace(/\./g, "");
         this.setState({ phone })
         if (!this.isPhoneNumber(phone)) {
             this.setState({ phoneValue: "Số điện thoại của bạn không hợp lệ", carrier: '' });
@@ -81,35 +82,35 @@ class App extends Component {
                 break;
             // Vinaphone
             case "0162":
-                phone = phone.replace("0162", "32");
+                phone = phone.replace("0162", "032");
                 carrier = "Viettel";
                 break;
             case "0163":
-                phone = phone.replace("0163", "33");
+                phone = phone.replace("0163", "033");
                 carrier = "Viettel";
                 break;
             case "0164":
-                phone = phone.replace("0164", "34");
+                phone = phone.replace("0164", "034");
                 carrier = "Viettel";
                 break;
             case "0165":
-                phone = phone.replace("0165", "35");
+                phone = phone.replace("0165", "035");
                 carrier = "Viettel";
                 break;
             case "0166":
-                phone = phone.replace("0166", "36");
+                phone = phone.replace("0166", "036");
                 carrier = "Viettel";
                 break;
             case "0167":
-                phone = phone.replace("0167", "37");
+                phone = phone.replace("0167", "037");
                 carrier = "Viettel";
                 break;
             case "0168":
-                phone = phone.replace("0168", "38");
+                phone = phone.replace("0168", "038");
                 carrier = "Viettel";
                 break;
             case "0169":
-                phone = phone.replace("0169", "39");
+                phone = phone.replace("0169", "039");
                 carrier = "Viettel";
                 break;
             // Viettel
@@ -155,26 +156,28 @@ class App extends Component {
                 return VinaLogo;
             case 'Mobifone':
                 return MobiLogo;
+            default: return null;
         }
     }
 
     render() {
         const { phone, phoneValue, carrier } = this.state;
         const carrierImg = this.getCarrier();
-        console.log(carrierImg);
 
         return (
             <div className="App">
                 <header className="App-header">
                     {/* <img src={logo} className="App-logo" alt="logo" /> */}
-                    <h1 className="App-title">Welcome to Convert phone number tool</h1>
+                    <h1 className="App-title">Công cụ chuyển đổi SĐT 2018</h1>
+                    <h5> Thực hiện: Đào Nam Tiến </h5>
+                    <h5> Ngày: 15/09/2018 </h5>
                 </header>
-                <div style={{ flex: 1, marginTop: 30, paddingRight: '20%', paddingLeft: '20%', width: '60%' }}>
+                <div style={{ flex: 1, marginTop: 30, marginBottom: 30, paddingRight: '20%', paddingLeft: '20%', width: '60%' }}>
                     <h5 style={{ fontWeight: 'inherit', textAlign: "justify" }}> Theo quyết định của Bộ TT&TT, các thuê bao 11 số tại Việt Nam
                         sẽ được chuyển về 10 số. Việc chuyển đổi này sẽ được chính thức thực hiện kể từ 0h ngày 15/9.  </h5>
                     <div style={{ flexDirection: 'row', justifyContent: 'center' }}>
                         <Input.TextArea
-                            style={{ flex: 1, padding: 10, fontSize: 20, width: 400, borderRadius: 10, borderColor: 'gray', alignSelf: 'center' }}
+                            style={{ flex: 1, padding: 10, fontSize: 20, width: '100%', borderRadius: 10, borderColor: 'gray', alignSelf: 'center' }}
                             autosize
                             size="large"
                             value={phone}
@@ -188,15 +191,15 @@ class App extends Component {
                         <div style={{ flex: 1, position: 'relative' }}>
                             <Input.TextArea
                                 style={
-                                    { padding: 10, color: carrier === '' ? 'red' : 'green', fontWeight: "bold", fontSize: 20, width: 400, borderRadius: 10, borderColor: 'gray' }
+                                    { padding: 10, color: carrier === '' ? 'red' : 'green', fontWeight: "bold", fontSize: 20, width: '100%', borderRadius: 10, borderColor: 'gray' }
                                 }
                                 autosize
                                 size="large"
                                 disabled
                                 value={phoneValue}
-                                placeholder="Your phone here"
+                                placeholder="Your new phone here"
                             />
-                            <img srcSet={carrierImg} style={{ position: 'absolute', right: 50, top: -50 }} width={200} height={100} />
+                            {carrierImg && <img srcSet={carrierImg} width={'80%'} height={'30%'} />}
                         </div>
                     </div>
                     <div style={{ marginTop: 20 }}>
